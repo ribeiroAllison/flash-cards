@@ -10,6 +10,12 @@ const topicsSlice = createSlice({
       const { id, name, icon } = action.payload;
       state.topics[id] = { name: name, icon: icon, quizId: [] };
     },
+    extraReducers: (builder) => {
+      builder.addCase("addQuiz", (state, action) => {
+        const { id, topicId } = action.payload;
+        state.topics[topicId] && state.topics[topicId].quizId.push(id);
+      });
+    },
   },
 });
 
