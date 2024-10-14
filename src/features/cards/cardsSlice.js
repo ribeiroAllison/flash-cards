@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { act } from "react";
-import { redirect } from "react-router-dom";
 
 const cardsSlice = createSlice({
   name: "cardsSlice",
@@ -19,7 +17,8 @@ const cardsSlice = createSlice({
   },
 });
 
-export const cardsSelector = (state) => state.cardsSlice.cards;
+export const cardsSelector = (id) => (state) =>
+  Object.values(state.cards).find((card) => card.id === id);
 
 export const { addCards } = cardsSlice.actions;
 export default cardsSlice.reducer;
