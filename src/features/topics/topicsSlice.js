@@ -8,7 +8,7 @@ const topicsSlice = createSlice({
   reducers: {
     addTopic: (state, action) => {
       const { id, name, icon } = action.payload;
-      state.topics[id] = { name: name, icon: icon, quizId: [] };
+      state.topics[id] = { id: id, name: name, icon: icon, quizId: [] };
     },
     extraReducers: (builder) => {
       builder.addCase("addQuiz", (state, action) => {
