@@ -10,6 +10,7 @@ import ROUTES from "../app/routes";
 export default function NewQuizForm() {
   const [name, setName] = useState("");
   const [cards, setCards] = useState([]);
+  const [cardsIds, setCardsIds] = useState([]);
   const [topicId, setTopicId] = useState("");
   const navigate = useNavigate();
   const topics = useSelector(selectTopics);
@@ -22,9 +23,11 @@ export default function NewQuizForm() {
     }
 
     cards.forEach((card) => {
+      const cardId = uuidv4();
+      setCardsIds([...cardsIds, cardId]);
       dispatch(
         addCard({
-          id: uuidv4(),
+          id: cardId,
           front: card.front,
           back: card.back,
         })
@@ -38,7 +41,7 @@ export default function NewQuizForm() {
         id: quizId,
         name: name,
         topicId: topicId,
-        cardIds: [],
+        cardIds: cardsIds,
       })
     );
 
